@@ -1,21 +1,19 @@
-## DimProduct – ETL proces
+## DimArticle – ETL process
+The ETL process for DimArticle includes the initial preparation of the target table through the Execute SQL Task, followed by a Data Flow Task in which data from multiple tables is transformed and loaded into the dimension table.
 
-This SSIS package 
-Ovaj SSIS paket puni dimenziju DimArtikal iz transakcionih tabela.
+### Data source - transaction tables
+- Products
+- Price list
+- Item classifications
+- Price and weight categories
 
-### Izvori podataka
-- Artikli
-- Cenovnik
-- Klasifikacije
-- Kategorije cene i težine
+### Transformations
+- Lookup for item classification
+- Lookup for weight categories
+- Price list lookup and price category lookup (match / no match)
+- Union All for unifying data
+- Replace NULL values
+- Data type conversion
 
-### Transformacije
-- Lookup za klasifikaciju artikala
-- Lookup za kategorije težine
-- Lookup cenovnika (match / no match)
-- Union All za objedinjavanje podataka
-- Replace NULL vrednosti
-- Data type konverzije
-
-### Cilj
-- Popunjavanje dimenzije DimArtikal za potrebe DW analitike
+### Goal
+- Filling dimension DimArticle in DW
