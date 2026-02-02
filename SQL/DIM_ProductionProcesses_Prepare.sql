@@ -1,7 +1,25 @@
 --Select for dwarehouse
 
 --INSERT INTO [KG].[dbo].[Skladiste]
-SELECT 
-	SkSifra AS SifraSK,
-	SkNaziv AS NazivSK 
-FROM Sklad	
+;WITH cte AS (
+    SELECT 
+        DpSifra AS SifraRP, 
+        DpNaziv AS NazivRP, 
+        DpSifMp AS MatPodRP, 
+        DpSifDelovnegaCentra AS RadCenRP,
+        ROW_NUMBER() OVER (PARTITION BY DpSifMp, DpSifDelovnegaCentra ORDER BY DpNaziv) AS rn,
+        COUNT(*) OVER (PARTITION BY DpSifMp, DpSifDelovnegaCentra) AS cnt
+    FROM 
+         [dondonlargo].[KRAGUJEVAC].[dbo].delpostopek
+)
+
+INSERT INTO RadniPostupci(SifraRP, NazivRP, MatPodRP,  RadCenRP)
+SELECT
+    SifraRP, 
+    NazivRP, 
+    MatPodRP, 
+    RadCenRP
+FROM 
+    cte
+WHERE 
+    cnt = 1 OR (cnt > 1 AND rn = 1); MatPodSDok = MatPodRP
