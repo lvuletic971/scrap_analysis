@@ -1,4 +1,5 @@
---Select for articles
+--Separation of finished products and semi-finished products from the article code list, because only within these two product classifications does waste occur
+
 --INSERT INTO [KG].[dbo].[Artikli]
 SELECT 
 	MpSifra AS SifraA,
@@ -15,14 +16,17 @@ FROM MaticniPodatki
 WHERE MpSifKarKlj IN ('I', 'P') 
 	
 
---Select for classification
+--Gathering additional information from the item classification table
+	
 --INSERT INTO [KG].[dbo].[Klasifikacija]
 SELECT 
 	KLoStZapisa AS SifraKlasif,
 	KLoOpis AS OpisKlasif
 FROM KlasOzn
 
---Select fror pricelist	
+	
+--Collecting data from the price list of items, in order to obtain the cost prices of items that were valid in the observed period
+	
 --INSERT INTO [Cenovnik]
 SELECT 
 	CnStZapisa AS SifraC,
@@ -31,6 +35,6 @@ SELECT
 	CnRazTipCn AS TipCenovnika,
 	CnSklad AS SkladisteC,
 	CnCena AS CenaC
-FROM Cenik c --to je view na KG
+FROM Cenik c
 WHERE c.CnRazTipCn ='4' AND c.CnDatSpremembe BETWEEN '2021-10-01' AND '2021-12-31' 
 ORDER BY DatumC DESC, ArtiklC
