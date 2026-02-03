@@ -1,7 +1,7 @@
-## DimArticle – ETL process
+## FactPromet – ETL process
 The ETL process for DimArticle includes the initial preparation of the target table through the Execute SQL Task, followed by a Data Flow Task in which data from multiple tables is transformed and loaded into the dimension table.
 
-### Data source - transaction tables
+### Data source - dimension tables
 - Products
 - Price list
 - Item classifications
@@ -16,4 +16,4 @@ The ETL process for DimArticle includes the initial preparation of the target ta
 - Data type conversion
 
 ### Goal
-- Filling dimension DimArticle in DW
+- Filling fact table FactPromet in DW
