@@ -13,21 +13,25 @@ is selected to avoid duplicates in the dimension.
 
 ;WITH cte AS (
     SELECT 
-        DpSifra AS SifraRP, 
-        DpNaziv AS NazivRP, 
-        DpSifMp AS MatPodRP, 
-        DpSifDelovnegaCentra AS RadCenRP,
+        DpSifra AS SifraRPostupka, 
+        DpNaziv AS NazivRPostupka, 
+        DpSifMp AS MatPodRPpostupka, 
+        DpSifDelovnegaCentra AS SifraRCentra,
+        DcNaziv AS NazivRCentra,
         ROW_NUMBER() OVER (PARTITION BY DpSifMp, DpSifDelovnegaCentra ORDER BY DpNaziv) AS rn,
         COUNT(*) OVER (PARTITION BY DpSifMp, DpSifDelovnegaCentra) AS cnt
     FROM 
-         delpostopek
+         DelPostopek
+    INNER JOIN 
+         DelovniCentri on DpSifDelovnegaCentra = DcSifra
 )
---INSERT INTO RadniPostupci(SifraRP, NazivRP, MatPodRP,  RadCenRP)
+--INSERT INTO RadniPostupci(SifraRPostupka, NazivRPostupka, MatPodRPpostupka, SifraRCentra, NazivRCentra)
 SELECT
-    SifraRP, 
-    NazivRP, 
-    MatPodRP, 
-    RadCenRP
+    SifraRPostupka, 
+    NazivRPostupka, 
+    MatPodRPpostupka, 
+    SifraRCentra,
+    NazivRCentra
 FROM 
     cte
 WHERE 
