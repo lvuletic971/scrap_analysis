@@ -57,18 +57,18 @@ Each script focuses on a specific **dimension or fact domain** and performs:
 
 ### SQL Scripts Overview
 
-- **dim_article_prepare.sql**  
+- **DIM_Article_extract.sql**  
   Prepares article-related data, including finished and semi-finished products,
   classifications, and cost prices.
 
-- **dim_error_prepare.sql**  
+- **DIM_Error_extract.sql**  
   Extracts error types and error causes associated with manufacturing waste.
 
-- **dim_production_process_prepare.sql**  
+- **DIM_ProductionProcesses_extract.sql**  
   Identifies production processes and resolves duplicates using window functions
   to ensure a single process per **item–work center** combination.
 
-- **fact_manufacturing_prepare.sql**  
+- **FACT_Manufacturing_extract.sql**  
   Prepares manufacturing transaction data, separates **waste (scrap)** from
   **regular production**, and produces aggregated quantities used for fact loading.
 
