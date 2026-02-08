@@ -1,6 +1,6 @@
 /*
 Purpose:
-Preparation of source data for DimArticle.
+Preparation of source data in staging tables used for building the data warehouse dimension.
 
 This script extracts:
 - finished and semi-finished products
