@@ -8,65 +8,110 @@ The solution covers the complete data pipeline:
 - dimensional data modeling
 - and analytical reporting using BI tools.
 
+---
+
 ## Data Model
 
-The data warehouse is designed using a star schema.
-It consists of a central fact table that stores manufacturing transactions, surrounded by multiple dimensions that describe products, production processes,
-errors, time.
+The data warehouse is designed using a **star schema**.
 
-The complete data model is available in the `/docs` folder.
+It consists of a central **fact table** that stores manufacturing transactions,
+surrounded by multiple **dimension tables** describing:
+
+- products  
+- production processes  
+- error types and causes  
+- time  
+
+The complete data model and schema diagram are available in the `/docs` folder.
+
+---
+
+## Source Data & Staging Approach
+
+To avoid performance impact on the **OLTP production system**,  
+all required transactional and master data is first **extracted into staging tables**
+located in a **separate database**.
+
+These staging tables serve as:
+
+- a controlled and stable data source for ETL  
+- an isolation layer between OLTP and the data warehouse  
+- a place for initial filtering, aggregation, and cleansing  
+
+Only **prepared staging data** is later used for loading
+dimension and fact tables in the data warehouse.
+
+---
 
 ## SQL Preparation Layer
 
-The `/SQL` folder contains SQL scripts used for preparing source data prior to the ETL process.
+The `/SQL` folder contains SQL scripts used for preparing **staging datasets**
+prior to the ETL process.
 
-Each script focuses on a specific dimension or fact and performs:
-- filtering of relevant records
-- deduplication logic
-- aggregation where needed
-- and preparation of clean datasets for loading into the data warehouse.
+Each script focuses on a specific **dimension or fact domain** and performs:
+
+- filtering of relevant records  
+- deduplication logic  
+- aggregation where required  
+- preparation of clean, structured datasets for ETL loading  
 
 ### SQL Scripts Overview
 
 - **dim_article_prepare.sql**  
-  Prepares article-related data, including finished and semi-finished products, classifications and cost prices.
+  Prepares article-related data, including finished and semi-finished products,
+  classifications, and cost prices.
 
 - **dim_error_prepare.sql**  
-  Extracts error types and error causes related to manufacturing waste.
+  Extracts error types and error causes associated with manufacturing waste.
 
 - **dim_production_process_prepare.sql**  
-  Identifies production processes and resolves duplicates using window functions to ensure one process per item and work center.
+  Identifies production processes and resolves duplicates using window functions
+  to ensure a single process per **item–work center** combination.
 
 - **fact_manufacturing_prepare.sql**  
-  Prepares manufacturing transactions and separates waste (scrap) records from regular production records.
+  Prepares manufacturing transaction data, separates **waste (scrap)** from
+  **regular production**, and produces aggregated quantities used for fact loading.
+
+---
 
 ## ETL Process (SSIS)
 
-The ETL layer is implemented using SQL Server Integration Services (SSIS).
+The ETL layer is implemented using **SQL Server Integration Services (SSIS)**.
 
-ETL packages handle:
-- data extraction from prepared SQL datasets,
-- data cleansing and enrichment using lookup transformations,
-- handling of missing and unmatched records,
-- and loading of data into dimension and fact tables.
+ETL packages are responsible for:
 
-Due to their complexity, ETL packages for the Article dimension and
-the Manufacturing Fact table are documented in detail.
+- extracting data from prepared **staging tables**  
+- performing data cleansing and enrichment via **Lookup transformations**  
+- handling missing, unmatched, or inconsistent records  
+- loading validated data into **dimension and fact tables**  
+
+Due to their complexity, ETL packages for:
+
+- the **Article dimension**
+- the **Manufacturing Fact table**
+
+are documented in additional detail within the project.
+
+---
 
 ## BI & Visualization
 
-The data warehouse is used as a source for analytical reporting.
-Dashboards and visualizations were created to analyze:
-- waste trends over time,
-- waste distribution by product and production unit,
-- key performance indicators related to manufacturing efficiency.
+The data warehouse serves as the foundation for **analytical reporting**.
+
+Dashboards and visualizations enable analysis of:
+
+- waste trends over time  
+- waste distribution by product and production unit  
+- key performance indicators related to manufacturing efficiency  
 
 Example reports and dashboards are available in the `/BI` folder.
 
+---
+
 ## Tools & Technologies
 
-- SQL Server
-- SQL (T-SQL)
-- SQL Server Integration Services (SSIS)
-- Power BI / Tableau
+- SQL Server  
+- T-SQL  
+- SQL Server Integration Services (SSIS)  
+- Power BI / Tableau  
 - GitHub
