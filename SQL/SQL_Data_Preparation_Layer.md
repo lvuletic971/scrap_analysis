@@ -22,38 +22,35 @@ All scripts follow the same workflow:
 
 Scripts Overview:
 
-dim_article_prepare.sql
+DIM_Article_extract.sql
 
-Prepares data for the Article dimension:
+- prepares data for the Article dimension:
 
-finished and semi-finished products
+- finished and semi-finished products
 
-product classifications
+- product classifications
 
-valid cost prices
+- valid cost prices.
 
-dim_error_prepare.sql
+DIM_Error_extract.sql
 
-Extracts error types and causes related to manufacturing waste,
-used for building error dimensions.
+- extracts error types and causes related to manufacturing waste, used for building error dimensions.
 
-dim_production_process_prepare.sql
+DIM_ProductionProcesses_extract.sql
 
-Identifies unique production processes per item and work center
-and removes duplicates using window functions.
+- identifies unique production processes per item and work center and removes duplicates using window functions.
 
-fact_manufacturing_prepare.sql
+FACT_Manufacturing_extract.sql
 
-Prepares the manufacturing fact dataset by:
+- prepares the manufacturing fact dataset by:
 
-separating scrap vs. regular production
+- separating scrap vs. regular production
 
-aggregating produced quantities
+- aggregating produced quantities
 
-preserving error attributes for scrap records
+- preserving error attributes for scrap records
 
 Architectural Role
 
-This SQL layer represents the staging boundary between the
-transactional OLTP system and the analytical data warehouse,
+This SQL layer represents the staging boundary between the transactional OLTP system and the analytical data warehouse,
 ensuring clean, consistent, and performance-safe data for ETL.
