@@ -50,7 +50,7 @@ The chart reveals a **continuous increase in waste**
 despite stable or slightly declining production,
 indicating **declining production efficiency**.
 
-![Waste Trend](WasteTrend.png)
+![Waste Trend](WasteTrend.png)(WasteTrend.png)
 
 ---
 
@@ -61,7 +61,7 @@ This view identifies **products contributing the most to total waste**.
 Some products generate **high waste despite low production volume**,
 which suggests **process or quality issues rather than scale effects**.
 
-![Top Waste Products](TopWasteProducts.png)
+![Top Waste Products](TopWasteProducts.png)(TopWasteProducts.png)
 
 ---
 
@@ -72,7 +72,7 @@ behind manufacturing waste.
 
 The findings indicate potential need for **equipment maintenance or replacement**.
 
-![Waste Causes](WasteCauses.png)
+![Waste Causes](WasteCauses.png)(WasteCauses.png)
 
 ---
 
@@ -84,4 +84,4 @@ with the **acceptable 1% production threshold**.
 Later years clearly exceed the limit,
 signaling **reduced operational efficiency**.
 
-![Waste KPI](WasteKPI.png)
+![Waste KPI](WasteKPI.png)(WasteKPI.png)
