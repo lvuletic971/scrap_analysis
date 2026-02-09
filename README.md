@@ -2,6 +2,8 @@
 
 This project presents the design and implementation of a data warehouse solution for analyzing manufacturing waste in the production of bakery products.
 
+The analysis covers the three-year period 2021–2023, with a business assumption that an acceptable manufacturing waste level should remain below 1% of total production.
+
 The solution covers the complete data pipeline:
 - extraction of transactional data
 - preparation and transformation using SQL and SSIS
