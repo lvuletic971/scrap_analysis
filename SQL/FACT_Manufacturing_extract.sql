@@ -10,7 +10,7 @@ Waste records include additional attributes related to error type and error caus
 -- 1. Waste (scrap) production transactions
 ------------------------------------------------------------
 
---INSERT INTO [PrometStavkePro]
+--INSERT INTO [KG].[dbo].[PrometStavkePro]
 SELECT 
 	[PrStZapisa] AS SifraSDok,
 	[PrStDokumenta] AS BrojDokumentaSDok,
@@ -33,7 +33,7 @@ GROUP BY PrStZapisa, PrStDokumenta, PrDatTrans, PrSifMp, PrSifStroskMesta, PrSif
 -- 2. Regular production transactions (non-waste)
 ------------------------------------------------------------
     
---INSERT INTO [PrometStavkeSka]
+--INSERT INTO [KG].[dbo].[PrometStavkeSka]
 SELECT 
 	[PrStZapisa] AS SifraSDok,
 	[PrStDokumenta] AS BrojDokumentaSDok,
