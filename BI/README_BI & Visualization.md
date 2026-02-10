@@ -64,7 +64,7 @@ Some products generate **high waste despite low production volume**, which sugge
 
 ### 3. Root Causes of Waste
 
-This analysis highlights the **dominant technical and machinery-related causes** behind manufacturing waste.
+This analysis highlights the **dominant technical and machinery-related causes** behind manufacturing waste. That confirms a high number of damaged units occurring during cutting and slicing processes, most frequently affecting toast products characterized by continuous line production.
 
 The findings indicate potential need for **equipment maintenance or replacement**.
 
