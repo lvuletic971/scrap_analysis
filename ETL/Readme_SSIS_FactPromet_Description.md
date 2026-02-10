@@ -49,8 +49,4 @@ Key transformations in the Data Flow include:
 
 Goal
 
-The final goal of this ETL process is:
-
-➡️ Populating the FactPromet table
-➡️ Providing a clean, aggregated, analysis-ready dataset
-➡️ Enabling time-series, product-level, and root-cause waste analysis in BI tools.
+- Populating the FactPromet table
